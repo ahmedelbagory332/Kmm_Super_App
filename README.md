@@ -12,7 +12,7 @@
 
 - [x] Ktor for api call
 - [x] Koin for DI
-- [x] Architecture Patterns (MVVM)
+- [x] Architecture Patterns (MVI)
 - [x] Co-routines 
 - [x] Navigation Component for Android
 - [x] Pagination for both Android and IOS
