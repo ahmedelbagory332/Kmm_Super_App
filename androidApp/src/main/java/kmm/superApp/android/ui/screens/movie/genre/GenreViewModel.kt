@@ -29,7 +29,16 @@ class GenreViewModel constructor(
     }
 
     init {
-        getGenre()
+        sendIntent(GenreIntent.GetGenre)
+    }
+
+    private fun sendIntent(intent: GenreIntent) {
+        viewModelScope.launch {
+            when (intent) {
+                is GenreIntent.GetGenre -> getGenre()
+
+            }
+        }
     }
 
     private fun getGenre() {

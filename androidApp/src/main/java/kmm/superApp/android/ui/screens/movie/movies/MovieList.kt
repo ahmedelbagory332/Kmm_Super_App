@@ -66,7 +66,9 @@ fun MovieList(
                     if (index >= uiState.movies.size - 1 && !uiState.loading && !uiState.loadFinished) {
                         LaunchedEffect(
                             key1 = Unit,
-                            block = { moviesViewModel.getMovies(genresId, false) })
+                            block = {
+                                moviesViewModel.sendIntent(MoviesIntent.GetMovies(genresId, false))
+                            })
                     }
                 }
 

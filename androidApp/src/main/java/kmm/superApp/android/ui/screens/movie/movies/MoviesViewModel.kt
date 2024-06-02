@@ -21,7 +21,17 @@ var uiState by mutableStateOf(MoviesState())
 
 
 
-     fun getMovies(genresId: String,forceReload: Boolean = false) {
+     fun sendIntent(intent: MoviesIntent) {
+        viewModelScope.launch {
+            when (intent) {
+                is MoviesIntent.GetMovies -> getMovies(intent.genresId, intent.forceReload)
+
+            }
+        }
+    }
+
+
+    private fun getMovies(genresId: String,forceReload: Boolean = false) {
         if (uiState.loading) return
         if (forceReload) currentPage = 1
 

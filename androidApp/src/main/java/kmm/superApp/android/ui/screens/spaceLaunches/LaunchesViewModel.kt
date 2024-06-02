@@ -20,10 +20,21 @@ class LaunchesViewModel(
     val launches: State<LaunchesState>
         get() = _launchesState
 
-
     init {
-        getLaunches()
+        sendIntent(LaunchesIntent.GetLaunches)
     }
+
+    private fun sendIntent(intent: LaunchesIntent) {
+        viewModelScope.launch {
+            when (intent) {
+                is LaunchesIntent.GetLaunches -> getLaunches()
+
+            }
+        }
+    }
+
+
+
 
 
     private fun getLaunches() {

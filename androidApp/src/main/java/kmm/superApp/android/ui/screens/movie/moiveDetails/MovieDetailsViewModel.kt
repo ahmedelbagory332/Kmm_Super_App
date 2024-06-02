@@ -21,10 +21,20 @@ class MovieDetailsViewModel constructor(
         get() = _state
 
     init {
-        getMovie(movieId)
+        sendIntent(MovieIntent.GetMovies(movieId))
     }
 
-     private fun getMovie(movieId:String) {
+    private fun sendIntent(intent: MovieIntent) {
+        viewModelScope.launch {
+            when (intent) {
+                is MovieIntent.GetMovies -> getMovie(intent.movieId)
+
+            }
+        }
+    }
+
+
+    private fun getMovie(movieId:String) {
         viewModelScope.launch {
             try {
                 _state.value = MovieDetailsState(isLoading = true)

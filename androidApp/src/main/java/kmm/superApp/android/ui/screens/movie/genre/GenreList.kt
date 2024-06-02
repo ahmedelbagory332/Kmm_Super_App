@@ -18,6 +18,7 @@ import kmm.superApp.android.ui.component.LoadingIndicator
 import kmm.superApp.android.ui.component.PlaceHolder
 import kmm.superApp.android.ui.screens.movie.genre.widget.Chip
 import kmm.superApp.android.ui.screens.movie.movies.MovieList
+import kmm.superApp.android.ui.screens.movie.movies.MoviesIntent
 import kmm.superApp.android.ui.screens.movie.movies.MoviesViewModel
 import kmm.superApp.domain.entity.GenreItemModel
 import kmm.superApp.domain.entity.MovieItem
@@ -53,10 +54,10 @@ fun GenreList(
                         else {
                             genreViewModel.setSelectedGenre(genre)
 
-                            moviesViewModel.getMovies(
+                            moviesViewModel.sendIntent(MoviesIntent.GetMovies(
                                 genreViewModel.selectedGenre.value.id.toString(),
                                 true
-                            )
+                            ))
                         }
 
                     },
